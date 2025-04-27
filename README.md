@@ -18,7 +18,7 @@ Provisionar a infraestrutura na Google Cloud Platform utilizando Terraform + Ter
 ## 🔗 Repositório da Aplicação
 
 O código da aplicação Go e Helm Chart estão disponíveis aqui:
-- [Crypto API App Repository](https://github.com/seu-usuario/desafio-mb-aplication)
+- [leonardopaes1/crypto-api-mb](https://github.com/leonardopaes1/crypto-api-mb)
 
 ---
 
