@@ -1,0 +1,46 @@
+name: Terraform Destroy
+
+on:
+  workflow_dispatch: # Permite que o destroy seja disparado manualmente no GitHub
+
+
+permissions:
+  contents: read
+
+jobs:
+  terraform-destroy:
+    name: Destruir Infraestrutura com Terragrunt
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.11.4
+
+      - name: Instalar Terragrunt
+        run: |
+          curl -L -o terragrunt https://github.com/gruntwork-io/terragrunt/releases/download/v0.57.4/terragrunt_linux_amd64
+          chmod +x terragrunt
+          sudo mv terragrunt /usr/local/bin/
+
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+          create_credentials_file: true
+
+      - name: Inicializar Terragrunt
+        working-directory: terraform/terragrunt/gke
+        run: terragrunt init
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ env.GOOGLE_GHA_CREDS_PATH }}
+
+      - name: Destruir Infraestrutura
+        working-directory: terraform/terragrunt/gke
+        run: terragrunt destroy -auto-approve
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ env.GOOGLE_GHA_CREDS_PATH }}
