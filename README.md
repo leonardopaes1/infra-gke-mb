@@ -24,7 +24,7 @@ O código da aplicação Go e Helm Chart estão disponíveis aqui:
 
 ## 🛠️ Ferramentas Utilizadas
 
-- Terraform 1.7.5
+- Terraform 1.11.4
 - Terragrunt 0.57.4
 - GCP CLI (gcloud)
 - GitHub Actions
@@ -41,7 +41,8 @@ Antes de iniciar o provisionamento da infraestrutura, é necessário:
     - `roles/compute.admin`
     - `roles/iam.serviceAccountUser`
     - `roles/storage.admin`
-    - `roles/monitoring.admin`
+    - `roles/monitoring.editor`
+    - `roles/logging.viewer`
 - 🔑 Gerar a chave JSON dessa Service Account (usada na Secret `GCP_CREDENTIALS`).
 
 - 🪣 Criar um **bucket no GCS** para ser utilizado como **backend** do Terraform:
@@ -52,6 +53,21 @@ Antes de iniciar o provisionamento da infraestrutura, é necessário:
   - E conceder à Service Account permissão `storage.admin` no bucket.
 
 - ⚙️ Criar as secrets de Actions no Github com os nomes listados abaixo e seus respectivos valores.
+- 🛠️ Habilitar PIs obrigatórias no Google Cloud
+
+    | API | Nome no Console | ID Técnico |
+    |:---|:-----------------|:-----------|
+    | Kubernetes Engine API | Kubernetes Engine API | `container.googleapis.com` |
+    | Cloud Resource Manager API | Cloud Resource Manager API | `cloudresourcemanager.googleapis.com` |
+    | IAM Service Account Credentials API | IAM Service Account Credentials API | `iamcredentials.googleapis.com` |
+
+  **Habilitar Via CLI:**
+
+  ```bash
+  gcloud services enable container.googleapis.com
+  gcloud services enable cloudresourcemanager.googleapis.com
+  gcloud services enable iamcredentials.googleapis.com
+  ```
 
 ---
 
@@ -74,11 +90,9 @@ Antes de iniciar o provisionamento da infraestrutura, é necessário:
 
 ## ⚙️ Provisionamento
 
-- Criação de VPC e subnets públicas
 - Criação de Cluster Kubernetes (GKE)
 - Node Pools para staging e produção
-- Backend remoto no GCS
-- Permissões IAM configuradas para SA
+- Alerta Pod Restart Anormal
 
 ---
 
@@ -100,6 +114,7 @@ Antes de iniciar o provisionamento da infraestrutura, é necessário:
 - Uso de GitHub Actions para automação CI/CD da infraestrutura
 - Preferência por soluções nativas GCP para observabilidade
 - Uso de Service Account Key segura via GitHub Secrets
+- Criar as secrets de Actions no Github permitindo passar variáveis dinamicamente para a criação do modulo terraform possibilitando aumento do número de node pools e reaproveitamento de código para outros projeto.
 
 ---
 
