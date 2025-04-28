@@ -62,7 +62,7 @@ Antes de iniciar o provisionamento da infraestrutura, é necessário:
 | `GCP_CREDENTIALS`  | Chave JSON do Service Account com permissões adequadas |
 | `PROJECT_ID`       | ID do projeto GCP onde a infraestrutura será criada    |
 | `CLUSTER_NAME`     | Nome do cluster GKE a ser criado                       |
-| `OWNER_EMAIL`      | E-mail do proprietário ou responsável pela infraestrutura |
+| `ALERT_EMAIL`      | E-mail do proprietário ou responsável pela infraestrutura |
 | `TFSTATE_BUCKET`   | Nome do bucket GCS onde será armazenado o Terraform State |
 
 ---

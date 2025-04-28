@@ -21,6 +21,7 @@ inputs = {
   subnetwork   = "default"
   zone       = "us-central1-c" #Remover caso queira voltar o cluster para regional
   location = "us-central1-c"
+  alert_email_address = local.owner_email
 
   node_pools = {
     # Node Pools Settings
@@ -42,5 +43,5 @@ inputs = {
     }
     
   }
-  alert_email_address = local.owner_email
+  
 }
