@@ -53,7 +53,7 @@ Antes de iniciar o provisionamento da infraestrutura, é necessário:
   - E conceder à Service Account permissão `storage.admin` no bucket.
 
 - ⚙️ Criar as secrets de Actions no Github com os nomes listados abaixo e seus respectivos valores.
-- 🛠️ AHabilitar PIs obrigatórias no Google Cloud
+- 🛠️ Habilitar PIs obrigatórias no Google Cloud
 
     | API | Nome no Console | ID Técnico |
     |:---|:-----------------|:-----------|
