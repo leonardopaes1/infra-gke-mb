@@ -114,6 +114,7 @@ Antes de iniciar o provisionamento da infraestrutura, é necessário:
 - Uso de GitHub Actions para automação CI/CD da infraestrutura
 - Preferência por soluções nativas GCP para observabilidade
 - Uso de Service Account Key segura via GitHub Secrets
+- Criar as secrets de Actions no Github permitindo passar variáveis dinamicamente para a criação do modulo terraform possibilitando aumento do número de node pools e reaproveitamento de código para outros projeto.
 
 ---
 
