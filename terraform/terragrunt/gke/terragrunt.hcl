@@ -3,13 +3,19 @@ include {
   path = find_in_parent_folders()
 }
 
+locals {
+  project_id   = get_env("GCP_PROJECT_ID")
+  cluster_name = get_env("CLUSTER_NAME")
+  owner_email  = get_env("EMAIL_ALERT")
+}
+
 terraform {
   source = "../../modules/gke"
 }
 
 inputs = {
-  project_id   = "sre-teste-458021"
-  cluster_name = "sre-cluster"
+  project_id   = local.project_id
+  cluster_name = local.cluster_name
   region       = "us-central1"
   network      = "default"
   subnetwork   = "default"
@@ -36,5 +42,5 @@ inputs = {
     }
     
   }
-  alert_email_address = "leonardpaes@gmail.com"
+  alert_email_address = local.owner_email
 }
