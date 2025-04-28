@@ -33,6 +33,13 @@ jobs:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
           create_credentials_file: true
 
+      - name: Export Environment Variables
+        run: |
+          echo GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }} >> $GITHUB_ENV
+          echo CLUSTER_NAME=${{ secrets.CLUSTER_NAME }} >> $GITHUB_ENV
+          echo TFSTATE_BUCKET=${{ secrets.TFSTATE_BUCKET }} >> $GITHUB_ENV
+          echo EMAIL_ALERT=${{ secrets.EMAIL_ALERT }} >> $GITHUB_ENV
+          
       - name: Inicializar Terragrunt
         working-directory: terraform/terragrunt/gke
         run: terragrunt init
