@@ -42,6 +42,8 @@ jobs:
           echo CLUSTER_NAME=${{ secrets.CLUSTER_NAME }} >> $GITHUB_ENV
           echo TFSTATE_BUCKET=${{ secrets.TFSTATE_BUCKET }} >> $GITHUB_ENV
           echo EMAIL_ALERT=${{ secrets.EMAIL_ALERT }} >> $GITHUB_ENV
+          echo PROD_NODE_NUMBER=${{ secrets.PROD_NODE_NUMBER }} >> $GITHUB_ENV
+          echo STAGING_NODE_NUMBER=${{ secrets.STAGING_NODE_NUMBER }} >> $GITHUB_ENV
 
 
       - name: Inicializar Terragrunt
