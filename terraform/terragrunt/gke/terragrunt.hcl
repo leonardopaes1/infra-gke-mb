@@ -7,6 +7,8 @@ locals {
   project_id   = get_env("GCP_PROJECT_ID")
   cluster_name = get_env("CLUSTER_NAME")
   owner_email  = get_env("EMAIL_ALERT")
+  prod_node_count = get_env("PROD_NODE_NUMBER")
+  staging_node_count = get_env("STAGING_NODE_NUMBER")
 }
 
 terraform {
@@ -27,7 +29,7 @@ inputs = {
     # Node Pools Settings
     prod-pool = {
       machine_type = "e2-medium"
-      node_count   = 1
+      node_count   = local.prod_node_count
       labels       = { env = "prod" }
       taint_key    = "env"
       taint_value  = "prod"
@@ -35,7 +37,7 @@ inputs = {
     }
     staging-pool = {
       machine_type = "e2-medium"
-      node_count   = 1
+      node_count   = local.staging_node_count
       labels       = { env = "staging" }
       taint_key    = "env"
       taint_value  = "staging"
