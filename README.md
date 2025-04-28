@@ -51,13 +51,13 @@ Antes de iniciar o provisionamento da infraestrutura, é necessário:
     ```
   - E conceder à Service Account permissão `storage.admin` no bucket.
 
-- ⚙️ Definir o nome do bucket no `backend` dos módulos de Terragrunt.
+- ⚙️ Criar as secrets de Actions no github com os nomes listados abaixo e seus respectivos valores.
 
 ---
 
 ## 🔒 Secrets Necessárias (GitHub)
 
-| Secret            | Descrição                                              |
+| Secret Name            |  Valor da Secret Conforme a Descrição                                           |
 |-------------------|---------------------------------------------------------|
 | `GCP_CREDENTIALS`  | Chave JSON do Service Account com permissões adequadas |
 | `PROJECT_ID`       | ID do projeto GCP onde a infraestrutura será criada    |
