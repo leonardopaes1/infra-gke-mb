@@ -112,6 +112,10 @@ export GCP_PROJECT_ID="seu-project-id"
 export CLUSTER_NAME="nome-do-cluster"
 export EMAIL_ALERT="email-do-service-account"
 export TFSTATE_BUCKET="nome-do-bucket-tfstate"
+export PROD_NODE_NUMBER="Número de nodes para o pool de produção"
+export STAGING_NODE_NUMBER="Número de nodes para o pool de staging"
+
+
 ```
 
 ```bash
