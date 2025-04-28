@@ -1,9 +1,13 @@
+locals {
+  owner_email = get_env("EMAIL_ALERT")
+}
+
 resource "google_monitoring_notification_channel" "email_channel" {
   display_name = "Default Email Notifications"
   type         = "email"
 
   labels = {
-    email_address = var.alert_email_address
+    email_address = local.owner_email
   }
 }
 
