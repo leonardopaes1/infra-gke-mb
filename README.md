@@ -45,7 +45,7 @@ Antes de iniciar o provisionamento da infraestrutura, é necessário:
     - `roles/viewer`
 - 🔑 Gerar a chave JSON dessa Service Account (usada na Secret `GCP_CREDENTIALS`).
 
-- 🪣 Criar um **bucket no GCS** para ser utilizado como **backend** do Terraform:
+- 🪣 Criar um **bucket no Cloud Storage** para ser utilizado como **backend** do Terraform:
   - Exemplo de comando para criação:
     ```bash
     gsutil mb -p [PROJECT_ID] -l [REGION] gs://[BUCKET_NAME]
