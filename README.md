@@ -36,13 +36,13 @@ O código da aplicação Go e Helm Chart estão disponíveis aqui:
 Antes de iniciar o provisionamento da infraestrutura, é necessário:
 
 - 📄 Criar uma **Service Account** no Google Cloud com as seguintes permissões:
-  - `roles/owner` **(recomendado para ambientes de teste)** ou permissões específicas mínimas:
-    - `roles/container.admin`
-    - `roles/compute.admin`
+  - `roles/owner ou roles/editor` **(recomendado para ambientes de teste)** ou permissões específicas mínimas exemplo:
+    - `roles/compute.networkAdmin`
+    - `roles/container.clusterAdmin`
     - `roles/iam.serviceAccountUser`
-    - `roles/storage.admin`
-    - `roles/monitoring.editor`
-    - `roles/logging.viewer`
+    - `roles/monitoring.admin`
+    - `roles/storage.folderAdmin`
+    - `roles/viewer`
 - 🔑 Gerar a chave JSON dessa Service Account (usada na Secret `GCP_CREDENTIALS`).
 
 - 🪣 Criar um **bucket no GCS** para ser utilizado como **backend** do Terraform:
@@ -53,6 +53,18 @@ Antes de iniciar o provisionamento da infraestrutura, é necessário:
   - E conceder à Service Account permissão `storage.admin` no bucket.
 
 - ⚙️ Criar as secrets de Actions no Github com os nomes listados abaixo e seus respectivos valores.
+
+    | Secret Name            |  Valor da Secret Conforme a Descrição                                           |
+    |-------------------|---------------------------------------------------------|
+    | `GCP_CREDENTIALS`  | Chave JSON do Service Account com permissões adequadas |
+    | `PROJECT_ID`       | ID do projeto GCP onde a infraestrutura será criada    |
+    | `CLUSTER_NAME`     | Nome do cluster GKE a ser criado                       |
+    | `ALERT_EMAIL`      | E-mail do proprietário ou responsável pela infraestrutura |
+    | `TFSTATE_BUCKET`   | Nome do bucket GCS onde será armazenado o Terraform State |
+    | `PROD_NODE_NUMBER`   | Quantidade de nodes para o pool de produção |
+    | `STAGING_NODE_NUMBER`   | Quantidade de nodes para o pool de staging |
+
+
 - 🛠️ Habilitar PIs obrigatórias no Google Cloud
 
     | API | Nome no Console | ID Técnico |
